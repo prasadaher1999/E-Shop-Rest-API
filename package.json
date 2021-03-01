@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/prasadaher1999/E-Shop-Reset-API/issues"
   },
-  "homepage": "https://github.com/prasadaher1999/E-Shop-Reset-API#readme"
+  "homepage": "https://github.com/prasadaher1999/E-Shop-Reset-API#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "joi": "^17.4.0",
+    "mongoose": "^5.11.18",
+    "morgan": "^1.10.0"
+  }
 }
