@@ -11,6 +11,11 @@ application.listen(portNo,()=>{
     console.log("listening on port no 3000");
 })
 
+//http request 
 application.get('/',(req,res)=>{
     res.json({"message":"success"})
+})
+
+application.get('/about',(req,res)=>{
+    res.json({"message":"about page"})
 })
