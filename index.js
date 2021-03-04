@@ -4,6 +4,7 @@ const application = express();
 const morgan = require("morgan"); 
 const { userRouter } = require("./routers/user-router");
 const { productRouter } = require("./routers/product-router");
+const { orderRouter } = require("./routers/order-router");
 const portNo = 3000;
 
 //setting middlewares
@@ -27,6 +28,7 @@ application.get('/about',(req,res)=>{
 
 application.use('/api/users',userRouter)
 application.use('/api/products',productRouter)
+application.use('/api/orders',orderRouter)
 
 application.get("*",(req,res)=>{
     res.json({"message":"url not match plz check the url"})
