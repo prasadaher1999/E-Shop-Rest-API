@@ -1,8 +1,7 @@
 const express = require("express");
+const { getProducts } = require("../controller/product-controller");
 const productRouter = express.Router();
 
-productRouter.get("",(req,res)=>{
-    res.json({"message":"Product API"})
-})
+productRouter.get("",getProducts)
 
 module.exports = {productRouter}

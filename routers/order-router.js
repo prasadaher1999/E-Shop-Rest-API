@@ -1,8 +1,7 @@
 const express =  require("express");
+const { getOrders } = require("../controller/order-controller");
 const orderRouter =  express.Router();
 
-orderRouter.get("",(req,res)=>{
-    res.json({"message":"Order API"})
-})
+orderRouter.get("",getOrders)
 
 module.exports = {orderRouter}
