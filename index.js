@@ -33,5 +33,5 @@ application.use('/api/orders',orderRouter)
 application.use('/api/categories',categoryRouter)
 
 application.get("*",(req,res)=>{
-    res.json({"Warning Message":"URL Path Not Match Please Check The URL :("})
+    res.json({"Message":"URL Path Not Match Please Check The URL :("})
 })
