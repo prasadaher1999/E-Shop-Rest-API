@@ -2,6 +2,7 @@ const express = require("express");
 const {createConnection} = require("./database/connection");
 const application = express();
 const morgan = require("morgan"); 
+const { userRouter } = require("./routers/user-router");
 const portNo = 3000;
 
 //setting middlewares
@@ -15,9 +16,16 @@ application.listen(portNo,()=>{
 
 //http request 
 application.get('/',(req,res)=>{
-    res.json({"message":"success"})
+    res.json({"message":"API is working"})
 })
 
 application.get('/about',(req,res)=>{
     res.json({"message":"about page"})
+})
+
+
+application.use('/api/users',userRouter)
+
+application.get("*",(req,res)=>{
+    res.json({"message":"url not match plz check the url"})
 })
