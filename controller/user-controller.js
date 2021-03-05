@@ -5,7 +5,7 @@ function getUsers(req, res) {
     res.json({ "message": "User API is working" })
 }
 
-async function saveUser(req, res) {
+async function saveUser(req, res, next) {
     body = req.body;
     console.log("BODY: ", body);
 
@@ -23,7 +23,8 @@ async function saveUser(req, res) {
     if (result.error) {
         // throw error
         res.status(400);
-        return res.json({ "message": result.error.details[0].message })
+        // return res.json({ "message": result.error.details[0].message })
+        return next(new Error(result.error.details[0].message))
     }
     const userData = result.value;
 
@@ -41,7 +42,8 @@ async function saveUser(req, res) {
     else {
         // throw error
         res.status(400);
-        return res.json({ message: "Email Already Registered !!!" });
+        // return res.json({ message: "Email Already Registered !!!" });
+        return next(new Error("Email Already Registered !!!"));
     }
 
     // check unique phone number
@@ -54,7 +56,9 @@ async function saveUser(req, res) {
     }
     else{
         res.status(400);
-        return res.json({message:"Phone Number Already Exist !!!"})
+        // return res.json({message:"Phone Number Already Exist !!!"})
+        return next(new Error("Phone Number Already Exist"));
+
     }
 
 }

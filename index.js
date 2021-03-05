@@ -6,6 +6,7 @@ const { userRouter } = require("./routers/user-router");
 const { productRouter } = require("./routers/product-router");
 const { orderRouter } = require("./routers/order-router");
 const { categoryRouter } = require("./routers/category-router");
+const { handleErrors } = require("./middlewares/error-handler");
 const portNo = 3000;
 
 //setting middlewares
@@ -31,6 +32,8 @@ application.use('/api/users',userRouter)
 application.use('/api/products',productRouter)
 application.use('/api/orders',orderRouter)
 application.use('/api/categories',categoryRouter)
+
+application.use(handleErrors)
 
 application.get("*",(req,res)=>{
     res.json({"Message":"URL Path Not Match Please Check The URL :("})
