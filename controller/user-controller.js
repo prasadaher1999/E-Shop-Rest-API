@@ -1,5 +1,6 @@
 const { User } = require("../models/user");
 const joi = require("joi");
+const passwordHash = require("password-hash");
 
 function getUsers(req, res) {
     res.json({ "message": "User API is working" })
@@ -51,6 +52,8 @@ async function saveUser(req, res, next) {
     let phoneNumber = await User.findOne({'phone':userData.phone});
 
     if(!phoneNumber){
+        userData.password = passwordHash.generate(userData.password);
+        
         const user = await new User(userData).save();
         res.json(user)
     }

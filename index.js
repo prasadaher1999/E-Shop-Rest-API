@@ -38,3 +38,14 @@ application.use(handleErrors)
 application.get("*",(req,res)=>{
     res.json({"Message":"URL Path Not Match Please Check The URL :("})
 })
+
+
+// console.log("inside index.js : hashpassword example");
+
+// const passwordHash = require("password-hash")
+// const hashPassword = passwordHash.generate("password1234");
+// console.log({hashPassword});
+
+// const isvalid = passwordHash.verify("password123",hashPassword)
+
+// console.log({isvalid});
