@@ -46,6 +46,6 @@ application.get("*",(req,res)=>{
 // const hashPassword = passwordHash.generate("password1234");
 // console.log({hashPassword});
 
-// const isvalid = passwordHash.verify("password123",hashPassword)
+// const isvalid = passwordHash.verify("password1234",hashPassword)
 
 // console.log({isvalid});
