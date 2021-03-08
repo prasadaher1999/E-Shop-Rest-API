@@ -32,6 +32,7 @@ application.use('/api/users',userRouter)
 application.use('/api/products',productRouter)
 application.use('/api/orders',orderRouter)
 application.use('/api/categories',categoryRouter)
+application.use('/api/users',userRouter)
 
 application.use(handleErrors)
 

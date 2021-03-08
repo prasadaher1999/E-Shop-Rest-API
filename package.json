@@ -19,6 +19,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.18",
     "morgan": "^1.10.0",
     "password-hash": "^1.2.2"
