@@ -1,4 +1,5 @@
 function handleErrors(error, request, response, next) {
+    console.log(error);
     try {
         if (response.statusCode == 200) {
             response.status(500)
@@ -8,6 +9,7 @@ function handleErrors(error, request, response, next) {
 
     catch (error) {
         // catch the error
+        console.log(error);
         next()//express js default handler
     }
 }
