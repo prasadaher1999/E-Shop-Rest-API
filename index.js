@@ -1,4 +1,9 @@
 const express = require("express");
+// environment variable configuartion
+require('dotenv').config()
+
+// console.log(process.env);
+
 const {createConnection} = require("./database/connection");
 const application = express();
 const morgan = require("morgan"); 
@@ -7,14 +12,14 @@ const { productRouter } = require("./routers/product-router");
 const { orderRouter } = require("./routers/order-router");
 const { categoryRouter } = require("./routers/category-router");
 const { handleErrors } = require("./middlewares/error-handler");
-const portNo = 3000;
+const { UPLOAD_FOLDER } = process.env;
 
 //setting middlewares
 application.use(express.json())
 application.use(morgan('dev'))//for getting server request output
 
-application.listen(portNo,()=>{
-    console.log("listening on port no 3000");
+application.listen(process.env.PORT || 8000,()=>{
+    console.log(`listening On Port No ${process.env.PORT || 3000}`);
     createConnection()
 })
 
@@ -32,12 +37,20 @@ application.use('/api/users',userRouter)
 application.use('/api/products',productRouter)
 application.use('/api/orders',orderRouter)
 application.use('/api/categories',categoryRouter)
-application.use('/api/users',userRouter)
+
+application.get("/" + UPLOAD_FOLDER + "/*",(req,res,next)=>{
+    const path = req.url;
+    console.log(path);
+    const filePath = `${__dirname}${path}`;
+    res.sendFile(filePath,(error)=>{
+        next();
+    });
+})
 
 application.use(handleErrors)
 
 application.get("*",(req,res)=>{
-    res.json({"Message":"URL Path Not Match Please Check The URL :("})
+    res.json({"Message":`Cannot GET ${req.url} Please check the url :(`})
 })
 
 

@@ -5,8 +5,9 @@ const jwt = require("jsonwebtoken");
 const { token } = require("morgan");
 const { string, object } = require("joi");
 
-function getUsers(req, res) {
-    res.json({ "message": "User API is working" })
+async function getUsers(req, res) {
+    const users = await User.find().sort({_id:-1});
+    return res.json({users})
 }
 
 function validateUserForRegistration(user) {

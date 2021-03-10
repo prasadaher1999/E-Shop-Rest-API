@@ -1,8 +1,15 @@
 const {Category} = require("../models/category");
 const joi = require("joi");
 
-function getCategory(req,res){
-    res.json({"message":"Category Router API is working"})
+async function getCategory(req,res){
+    const categories = await Category.find().select('_id name').sort({_id:-1})
+    return res.json({categories})
+}
+
+async function getCategoryById(req,res){
+    const _id = req.params.category_id;
+    const category = await Category.findOne({_id:_id});
+    res.json({category});
 }
 
 async function addCategory(req,res,next) {
@@ -24,4 +31,4 @@ async function addCategory(req,res,next) {
     }
 }
 
-module.exports = {getCategory,addCategory}
+module.exports = {getCategory,addCategory,getCategoryById}

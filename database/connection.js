@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const DB_URL = "mongodb://localhost:27017/ecomm";
+const {DB_URL} = process.env
 
 async function createConnection() {
     
