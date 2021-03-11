@@ -1,5 +1,7 @@
 const {Category} = require("../models/category");
+const {Product} = require("../models/product");
 const joi = require("joi");
+
 
 async function getCategory(req,res){
     const categories = await Category.find().select('_id name').sort({_id:-1})
@@ -31,4 +33,11 @@ async function addCategory(req,res,next) {
     }
 }
 
-module.exports = {getCategory,addCategory,getCategoryById}
+async function getProductByCategory(req,res,next){
+    console.log(req.params)
+    category_id = req.params.category_id;
+    const products = await Product.find({category:category_id}).populate("category")
+
+    res.json(products)
+}
+module.exports = {getCategory,addCategory,getCategoryById, getProductByCategory}
