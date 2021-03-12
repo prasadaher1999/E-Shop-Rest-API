@@ -6,6 +6,7 @@ const { token } = require("morgan");
 const { string, object } = require("joi");
 
 async function getUsers(req, res) {
+    // throw new Error("custome error")
     const users = await User.find().sort({_id:-1});
     return res.json({users})
 }

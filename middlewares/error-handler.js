@@ -4,7 +4,7 @@ function handleErrors(error, request, response, next) {
         if (response.statusCode == 200) {
             response.status(500)
         }
-        response.json({ error: error.message, info: "message from error handler middleware!!" })
+        response.json({ error: error.message|| "Something Went Wrong !" , msg: "from error handler middleware !"})
     }
 
     catch (error) {

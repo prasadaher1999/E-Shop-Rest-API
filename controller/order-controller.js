@@ -3,8 +3,14 @@ const {Product} = require("../models/product");
 const {Order} = require("../models/order");
 
 
-function getOrders(req,res){
-    res.json({"message":"Order API iss working"})
+async function getOrders(req,res){
+    // const orders = await Order.find().populate('product user');
+     const orders = await Order.find().populate([
+         {path:'product',populate:[{path:'category',select:'-created_at -updated_at -__v'}]},
+         {path:'user', select:'-password -__v -created_at -updated_at'}
+     ]);
+    
+    res.json({orders:orders})
 }
 
 async function placeOrder(req,res,next) {
@@ -35,4 +41,16 @@ async function placeOrder(req,res,next) {
     res.json({orders:saveResult})
 }
 
-module.exports = {getOrders,placeOrder}
+async function getOrderByUser(req,res,next){
+    const userId = req.params.userId;
+    const userOrder = await Order.find({user:userId}).populate('product')
+    res.json({order:userOrder})
+}
+
+async function deleteOrder(req,res,next){
+    const _id = req.params.orderId;
+    const result = await Order.deleteOne({_id:_id});
+    res.json({message:'Order Deleted Successfully!!',result})
+}
+
+module.exports = {getOrders,placeOrder,getOrderByUser,deleteOrder}

@@ -1,4 +1,6 @@
 const express = require("express");
+require('express-async-errors');
+
 // environment variable configuartion
 require('dotenv').config()
 
@@ -49,6 +51,7 @@ application.get("/" + UPLOAD_FOLDER + "/*",(req,res,next)=>{
 
 application.use(handleErrors)
 
+// when page not found
 application.get("*",(req,res)=>{
     res.json({"Message":`Cannot GET ${req.url} Please check the url :(`})
 })

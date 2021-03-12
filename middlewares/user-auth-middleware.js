@@ -37,7 +37,7 @@ function adminAuthMiddleWare(req,res,next){
             return next();
         }
         res.status(401);
-        return res.json({error:"You are not authorized to access resources !"})
+        return res.json({error:"You are not authorized(admin) to access resource !"})
 
     }catch (error) {
         console.log("adminAuthMiddlewareError:",error);

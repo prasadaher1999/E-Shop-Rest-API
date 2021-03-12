@@ -4,8 +4,11 @@ const joi = require("joi");
 
 
 async function getCategory(req,res){
-    const categories = await Category.find().select('_id name').sort({_id:-1})
-    return res.json({categories})
+    const limit = Number.parseInt(req.query.limit);
+    console.log({limit})
+    const categories = await Category.find().select('_id name').sort({_id:-1}).limit(limit || 10);
+    const total_Category = await Category.countDocuments();
+    return res.json({total_Category,categories})
 }
 
 async function getCategoryById(req,res){
