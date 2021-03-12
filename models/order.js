@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.schema;
-
+const Schema = mongoose.Schema;
+const {Product} = require("../models/product");
+ 
 // creating schema
 
 const orderSchema = new Schema({
     price:{type:Number,required:true},
-    product:{type:mongoose.Types.ObjectId,ref="product",required:true},
+    product:{type:mongoose.Types.ObjectId,ref:"product",required:true},
     user:{type:mongoose.Types.ObjectId,ref:"user",required:true},
     address:{type:String,required:true},
     quantity:{type:Number,required:true},
