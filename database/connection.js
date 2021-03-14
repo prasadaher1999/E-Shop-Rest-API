@@ -8,9 +8,9 @@ async function createConnection() {
     const connection = await mongoose.connect(DB_URL,{useNewUrlParser:true,useUnifiedTopology:true})
 
     if(connection){
-        console.log("connected !!!");
+        console.log("Connected :)");
     }else{
-        console.log("failed to connect db")
+        console.log("failed to connect to MongoDB :(")
     }
 
 }
